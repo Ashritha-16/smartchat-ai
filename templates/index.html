@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<!-- Markdown support -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+
+    <div class="logo">
+        AI Chatbot
+    </div>
+
+    <div class="top-buttons">
+        <button id="theme-toggle">🌙</button>
+        <a href="/logout">Logout</a>
+    </div>
+
+</div>
+
+<!-- MAIN CONTAINER -->
+<div class="main-container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <button id="new-chat-btn">+ New Chat</button>
+
+        <h3>History</h3>
+
+        <div id="history-list"></div>
+
+    </div>
+
+    <!-- CHAT AREA -->
+    <div class="chat-section">
+
+        <div id="chat-box">
+
+            {% for chat in chats %}
+                <div class="user">{{ chat.user_message }}</div>
+                <div class="bot">{{ chat.bot_response }}</div>
+            {% endfor %}
+
+        </div>
+
+        <!-- INPUT AREA -->
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Type message...">
+            <button id="mic-btn">🎤</button>
+            <button onclick="sendMessage()">Send</button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Script -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

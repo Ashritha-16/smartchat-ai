@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="auth-page register-bg">
+
+<!-- LEFT INFO SECTION -->
+<div class="welcome-section">
+    <h1>Create Your Account</h1>
+    <p>Join AI Chatbot and start chatting instantly.</p>
+</div>
+
+<!-- REGISTER BOX -->
+<div class="auth-box">
+
+    <h2>Sign up</h2>
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <p style="color:red;">{{ messages[0] }}</p>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Register form -->
+    <form method="POST">
+        <input type="text" name="username" id="username" placeholder="Username" required>
+        <input type="password" name="password" id="password" placeholder="Password" required>
+        <input type="password" name="confirm" placeholder="Confirm Password" required>
+        <button type="submit">Sign up</button>
+    </form>
+    <!-- Login link -->
+    <p>
+        Already have an account?
+        <a href="/login">Sign in</a>
+    </p>
+
+</div>
+
+<!-- JS file for live validation -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
