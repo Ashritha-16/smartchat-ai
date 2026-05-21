@@ -20,8 +20,13 @@ import os
 bp = Blueprint("main", __name__)
 
 # Gemini AI setup
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+def get_gemini_client():
+    api_key = os.getenv("GEMINI_API_KEY")
 
+    if not api_key:
+        raise Exception("GEMINI_API_KEY missing in Render environment")
+
+    return genai.Client(api_key=api_key)
 
 # =========================
 # WELCOME PAGE
@@ -201,11 +206,12 @@ User:
 """
 
     try:
+        client = get_gemini_client()
         response = client.models.generate_content(
             model="gemini-flash-latest",
             contents=prompt
         )
-
+        
         bot_reply = response.text
 
         # Save chat
