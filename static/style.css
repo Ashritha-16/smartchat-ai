@@ -543,7 +543,7 @@ button:hover{
 }
 
 /* =========================================
-   MOBILE RESPONSIVE
+   MOBILE RESPONSIVE ONLY
 ========================================= */
 
 @media (max-width:768px){
@@ -671,17 +671,25 @@ button:hover{
 
     .auth-page{
         min-height:100dvh;
+        display:flex;
         flex-direction:column;
-        justify-content:center;
+
+        /* text at top */
+        justify-content:flex-start;
+
         align-items:center;
-        gap:20px;
-        padding:25px 18px;
+        gap:24px;
+
+        padding:40px 18px 30px;
         text-align:center;
     }
 
     .welcome-section{
         width:100%;
         max-width:320px;
+
+        /* move content upward */
+        margin-top:10px;
     }
 
     .welcome-section h1{
@@ -702,6 +710,10 @@ button:hover{
     .auth-box{
         width:100%;
         max-width:320px;
+
+        /* login/register box at bottom */
+        margin-top:auto;
+
         padding:22px 18px;
         border-radius:20px;
         backdrop-filter:blur(18px);
@@ -749,18 +761,28 @@ button:hover{
 
     .welcome-bg{
         min-height:100dvh;
+
+        display:flex;
         justify-content:center;
         align-items:center;
+
         padding:20px;
+
         background-position:center;
         background-size:cover;
     }
 
+    /* welcome card perfectly centered */
+
     .center{
         width:100%;
         max-width:330px;
+
+        margin:auto;
+
         padding:30px 22px;
         border-radius:22px;
+
         backdrop-filter:blur(18px);
     }
 
