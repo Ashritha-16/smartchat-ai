@@ -1,4 +1,3 @@
-
 # Flask imports
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for, flash
 
@@ -16,8 +15,10 @@ from extensions import db
 from google import genai
 import os
 
+
 # Create blueprint
 bp = Blueprint("main", __name__)
+
 
 # Gemini AI setup
 def get_gemini_client():
@@ -27,6 +28,7 @@ def get_gemini_client():
         raise Exception("GEMINI_API_KEY missing in Render environment")
 
     return genai.Client(api_key=api_key)
+
 
 # =========================
 # WELCOME PAGE
@@ -57,10 +59,7 @@ def register():
         password = request.form.get("password")
         confirm = request.form.get("confirm")
 
-        # =====================
         # USERNAME VALIDATION
-        # =====================
-
         if not username:
             flash("Username cannot be empty ❌")
             return redirect(url_for("main.register"))
@@ -75,18 +74,12 @@ def register():
             flash("Username must be at least 5 characters ❌")
             return redirect(url_for("main.register"))
 
-        # =====================
         # PASSWORD MATCH CHECK
-        # =====================
-
         if password != confirm:
             flash("Passwords do not match ❌")
             return redirect(url_for("main.register"))
 
-        # =====================
         # PASSWORD VALIDATION
-        # =====================
-
         if len(password) < 5:
             flash("Password must be at least 5 characters ❌")
             return redirect(url_for("main.register"))
@@ -107,18 +100,12 @@ def register():
             flash("Password must contain 1 special character ❌")
             return redirect(url_for("main.register"))
 
-        # =====================
         # EXISTING USER CHECK
-        # =====================
-
         if User.query.filter_by(username=username).first():
             flash("Username already exists ❌")
             return redirect(url_for("main.register"))
 
-        # =====================
         # CREATE USER
-        # =====================
-
         new_user = User(
             username=username,
             password=generate_password_hash(password)
@@ -131,6 +118,7 @@ def register():
         return redirect(url_for("main.login"))
 
     return render_template("register.html")
+
 
 # =========================
 # LOGIN
@@ -207,11 +195,12 @@ User:
 
     try:
         client = get_gemini_client()
+
         response = client.models.generate_content(
             model="gemini-flash-latest",
             contents=prompt
         )
-        
+
         bot_reply = response.text
 
         # Save chat

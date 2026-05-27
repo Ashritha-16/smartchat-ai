@@ -1,5 +1,5 @@
 // ===============================
-// GET HTML ELEMENTS
+// ELEMENTS
 // ===============================
 const chatBox = document.getElementById("chat-box");
 const inputField = document.getElementById("user-input");
@@ -7,16 +7,22 @@ const historyList = document.getElementById("history-list");
 const themeToggle = document.getElementById("theme-toggle");
 const newChatButton = document.getElementById("new-chat-btn");
 const micButton = document.getElementById("mic-btn");
+const menuBtn = document.getElementById("menu-btn");
+const sidebar = document.querySelector(".sidebar");
+
+// overlay (mobile menu)
+const overlay = document.createElement("div");
+overlay.className = "overlay";
+document.body.appendChild(overlay);
 
 
 // ===============================
-// QUICK REPLY
+// QUICK REPLY FUNCTION
 // ===============================
 function quickReply(text) {
-
     const msg = text.toLowerCase().trim();
 
-    if (msg === "ayoo" || msg === "ayo" || msg === "hi" || msg === "hello") {
+    if (["hi", "hello", "ayo", "ayoo"].includes(msg)) {
         return "Hey 👋 How can I help you?";
     }
 
@@ -25,7 +31,7 @@ function quickReply(text) {
 
 
 // ===============================
-// ADD MESSAGE TO CHAT
+// FUNCTION TO ADD MESSAGE
 // ===============================
 function addMessage(text, sender) {
 
@@ -39,6 +45,8 @@ function addMessage(text, sender) {
     }
 
     chatBox.appendChild(message);
+
+    // auto scroll to latest message
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
@@ -57,26 +65,32 @@ function showTyping() {
 }
 
 function removeTyping() {
+
     const typing = document.getElementById("typing");
-    if (typing) typing.remove();
+    if (typing) {
+        typing.remove();
+    }
 }
 
 
 // ===============================
-// SEND MESSAGE
+// SEND MESSAGE FUNCTION
 // ===============================
 async function sendMessage() {
 
     const text = inputField.value.trim();
     if (!text) return;
 
+    // show user message
     addMessage(text, "user");
     inputField.value = "";
 
+    // show typing
     showTyping();
 
-    // quick reply check
+    // check quick reply first
     const reply = quickReply(text);
+
     if (reply) {
         removeTyping();
         addMessage(reply, "bot");
@@ -84,10 +98,11 @@ async function sendMessage() {
     }
 
     try {
-
         const res = await fetch("/chat", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify({ message: text })
         });
 
@@ -96,44 +111,67 @@ async function sendMessage() {
         removeTyping();
         addMessage(data.response, "bot");
 
-    } catch (error) {
-
+    } catch (err) {
         removeTyping();
         addMessage("Server error", "bot");
-        console.log(error);
+        console.log(err);
     }
 }
 
 
 // ===============================
-// EVENTS
+// EVENT LISTENERS
 // ===============================
 
-// send message on Enter
-inputField.addEventListener("keypress", function (e) {
+// send message on Enter key
+inputField.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         sendMessage();
     }
 });
 
-// new chat
-newChatButton.addEventListener("click", function () {
+// new chat button
+newChatButton.addEventListener("click", () => {
     chatBox.innerHTML = "";
 });
 
-// dark mode toggle
-themeToggle.addEventListener("click", function () {
+// theme toggle
+themeToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
 });
 
 
 // ===============================
-// CHAT HISTORY
+// MOBILE MENU CONTROL
+// ===============================
+function closeMenu() {
+    sidebar.classList.remove("active");
+    overlay.classList.remove("show");
+}
+
+// toggle sidebar menu
+menuBtn?.addEventListener("click", () => {
+    sidebar.classList.toggle("active");
+    overlay.classList.toggle("show");
+});
+
+// close when clicking outside
+overlay.addEventListener("click", closeMenu);
+
+// auto close on resize
+window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+        closeMenu();
+    }
+});
+
+
+// ===============================
+// CHAT HISTORY LOADING
 // ===============================
 async function loadHistory() {
 
     try {
-
         const res = await fetch("/history");
         const data = await res.json();
 
@@ -151,15 +189,15 @@ async function loadHistory() {
             del.innerText = "✖";
             del.className = "delete-btn";
 
-            // open chat
-            item.addEventListener("click", function () {
+            // load selected chat
+            item.addEventListener("click", () => {
                 chatBox.innerHTML = "";
                 addMessage(chat.message, "user");
                 addMessage(chat.response, "bot");
             });
 
             // delete chat
-            del.addEventListener("click", async function (e) {
+            del.addEventListener("click", async (e) => {
                 e.stopPropagation();
 
                 await fetch(`/delete_chat/${chat.id}`, {
@@ -171,19 +209,21 @@ async function loadHistory() {
 
             item.appendChild(text);
             item.appendChild(del);
+
             historyList.appendChild(item);
         });
 
-    } catch (error) {
-        console.log(error);
+    } catch (err) {
+        console.log(err);
     }
 }
 
+// initial history load
 loadHistory();
 
 
 // ===============================
-// VOICE INPUT
+// VOICE INPUT (MIC)
 // ===============================
 const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -192,11 +232,10 @@ if (SpeechRecognition) {
 
     const recognition = new SpeechRecognition();
     recognition.lang = "en-US";
-    recognition.continuous = true;
 
     let isMicOn = false;
 
-    micButton.addEventListener("click", function () {
+    micButton.addEventListener("click", () => {
 
         if (!isMicOn) {
             recognition.start();
@@ -209,17 +248,17 @@ if (SpeechRecognition) {
         }
     });
 
-    recognition.onresult = function (event) {
-        const text = event.results[event.results.length - 1][0].transcript;
-        inputField.value = text;
+    recognition.onresult = (e) => {
+        inputField.value =
+            e.results[e.results.length - 1][0].transcript;
     };
 
-    recognition.onend = function () {
+    recognition.onend = () => {
         isMicOn = false;
         micButton.innerText = "🎤";
     };
 
-    recognition.onerror = function () {
+    recognition.onerror = () => {
         isMicOn = false;
         micButton.innerText = "🎤";
         alert("Mic error");
