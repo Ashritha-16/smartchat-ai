@@ -550,6 +550,97 @@ input {
 }
 
 
+/* =========================================
+   DARK MODE (CHAT PAGE ONLY FIXED)
+========================================= */
+
+body.dark-mode {
+    background: #0b1220;
+    color: #e5e7eb;
+}
+
+/* TOP BAR */
+body.dark-mode .top-bar {
+    background: rgba(17, 24, 39, 0.9);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+body.dark-mode .logo {
+    color: #c4b5fd;
+}
+
+body.dark-mode .top-buttons button,
+body.dark-mode .top-buttons a {
+    background: #1f2937;
+    color: #e5e7eb;
+}
+
+/* SIDEBAR */
+body.dark-mode .sidebar {
+    background: #111827;
+    border-right: 1px solid #1f2937;
+}
+
+body.dark-mode .sidebar h3 {
+    color: #e5e7eb;
+}
+
+/* CHAT SECTION */
+body.dark-mode .chat-section {
+    background: #0f172a;
+}
+
+/* CHAT BOX */
+body.dark-mode #chat-box {
+    background: #0f172a;
+}
+
+/* USER MESSAGE (keep same but slightly adjusted) */
+body.dark-mode .user {
+    background: linear-gradient(90deg, #4f46e5, #7c3aed);
+}
+
+/* BOT MESSAGE */
+body.dark-mode .bot {
+    background: #1f2937;
+    color: #e5e7eb;
+}
+
+/* INPUT AREA */
+body.dark-mode .input-area {
+    background: #0f172a;
+}
+
+body.dark-mode .input-area input {
+    background: #111827;
+    color: #e5e7eb;
+    border: 1px solid #374151;
+}
+
+body.dark-mode .input-area input::placeholder {
+    color: #9ca3af;
+}
+
+/* BUTTONS */
+body.dark-mode .input-area button {
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+}
+
+/* HISTORY ITEMS */
+body.dark-mode .history-item {
+    background: #1f2937;
+    color: #e5e7eb;
+}
+
+body.dark-mode .history-item:hover {
+    background: #374151;
+}
+
+/* DELETE BUTTON */
+body.dark-mode .delete-btn {
+    background: #7f1d1d;
+}
+
 /* ===============================
    ANIMATION
 =============================== */
