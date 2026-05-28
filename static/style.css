@@ -65,7 +65,7 @@ select{
 .login-bg{
     background:
     linear-gradient(rgba(0,0,0,0.15),rgba(0,0,0,0.15)),
-    url("images/login-bg.jpg");
+    url("images/login-bg.png");
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
@@ -74,7 +74,7 @@ select{
 .register-bg{
     background:
     linear-gradient(rgba(0,0,0,0.15),rgba(0,0,0,0.15)),
-    url("images/register-bg.jpg");
+    url("images/register-bg.png");
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
@@ -83,7 +83,7 @@ select{
 .welcome-bg{
     background:
     linear-gradient(rgba(0,0,0,0.15),rgba(0,0,0,0.15)),
-    url("images/welcome-bg.jpg");
+    url("images/welcome-bg.png");
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
