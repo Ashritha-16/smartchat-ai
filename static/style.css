@@ -704,29 +704,40 @@ body.dark-mode .delete-btn{
         padding:20px 15px;
     }
 
+
     .input-area{
-        padding:12px;
-        gap:10px;
+        width:100%;
+        padding:10px;
+        display:flex;
         align-items:center;
+        gap:6px;
+        box-sizing:border-box;
+        overflow:hidden;
     }
 
     .input-area input{
         flex:1;
-        min-height:50px;
-        padding:0 16px;
+        width:100%;
+        min-width:0;
+        height:46px;
+        padding:0 14px;
+        border-radius:25px;
         font-size:14px;
     }
 
     .input-area button{
-        width:50px;
-        min-width:50px;
-        height:50px;
+        width:46px;
+        min-width:46px;
+        height:46px;
+        flex-shrink:0;
+        border-radius:50%;
         display:flex;
         align-items:center;
         justify-content:center;
-        border-radius:50%;
-        flex-shrink:0;
+        padding:0;
     }
+
+
 
 
     .auth-box{
