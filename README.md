@@ -5,6 +5,13 @@ The application provides real-time AI conversations with authentication, chat hi
 
 ---
 
+# 🌐 Live Demo
+
+🔗 Live Website:
+https://smartchat-ai-r3qu.onrender.com/
+
+---
+
 # 🚀 Features
 
 * 🔐 User Login & Registration System
@@ -12,7 +19,7 @@ The application provides real-time AI conversations with authentication, chat hi
 * 💬 Chat History Management
 * 🎤 Voice Input Support
 * 🌙 Dark Mode UI
-* 📱 Responsive Design
+* 📱 Fully Responsive Design
 
 ---
 
@@ -30,7 +37,7 @@ The application provides real-time AI conversations with authentication, chat hi
 
 # 📂 Project Structure
 
-```bash id="7fpg9v"
+```bash id="pw4qzs"
 smartchat-ai/
 │
 ├── static/
@@ -47,7 +54,7 @@ smartchat-ai/
 
 Create a MySQL database:
 
-```sql id="ejbwj8"
+```sql id="zebx4i"
 CREATE DATABASE chatbot_db;
 
 USE chatbot_db;
@@ -59,7 +66,7 @@ USE chatbot_db;
 
 Create a `.env` file in the project root directory and add the following:
 
-```env id="zr4n0t"
+```env id="t1x0kb"
 SECRET_KEY=your_secret_key
 
 DATABASE_URL=mysql+pymysql://root:yourpassword@localhost/chatbot_db
@@ -73,19 +80,23 @@ GEMINI_API_KEY=your_gemini_api_key
 
 ## 1️⃣ Install Dependencies
 
-```bash id="wtphkg"
+```bash id="ttg3xh"
 pip install -r requirements.txt
 ```
 
+---
+
 ## 2️⃣ Run the Flask Application
 
-```bash id="0jvjlwm"
+```bash id="6b58yq"
 python app.py
 ```
 
+---
+
 ## 3️⃣ Open in Browser
 
-```bash id="lq6sv2"
+```bash id="h6eq2g"
 http://127.0.0.1:5000/
 ```
 
@@ -101,6 +112,7 @@ This project helped improve my understanding of:
 * Database Management with MySQL
 * AI Chatbot Integration
 * Frontend & Backend Integration
+* Responsive UI Development
 
 ---
 
@@ -110,6 +122,9 @@ This project helped improve my understanding of:
 
 🔗 GitHub:
 https://github.com/ashritha-16
+
+🔗 Live Project:
+https://smartchat-ai-r3qu.onrender.com/
 
 ---
 
