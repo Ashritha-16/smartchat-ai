@@ -27,7 +27,7 @@ https://smartchat-ai-r3qu.onrender.com/
 
 * Python
 * Flask
-* MySQL
+* SQLite
 * HTML5
 * CSS3
 * JavaScript
