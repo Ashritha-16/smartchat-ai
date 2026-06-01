@@ -1,43 +1,63 @@
 # 🤖 SmartChat AI Web App
 
-A Flask-based AI chatbot web application powered by the Google Gemini API.
-The application provides real-time AI conversations with authentication, chat history, voice input, and dark mode support.
+SmartChat AI is a Flask-based AI chatbot web application powered by the Google Gemini API. It provides real-time AI conversations with secure user authentication, chat history management, voice input support, and a modern responsive interface.
 
 ---
 
-# 🌐 Live Demo
+## 🌐 Live Demo
 
-🔗 Live Website:
+**Website:**
 https://smartchat-ai-r3qu.onrender.com/
 
 ---
 
-# 🚀 Features
+## 🚀 Features
 
-* 🔐 User Login & Registration System
-* 🤖 AI Chatbot using Google Gemini API
+* 🔐 User Registration & Login System
+* 🤖 AI Chatbot powered by Google Gemini API
 * 💬 Chat History Management
 * 🎤 Voice Input Support
-* 🌙 Dark Mode UI
+* 🌙 Dark Mode Interface
 * 📱 Fully Responsive Design
+* ⚡ Fast and User-Friendly Experience
 
 ---
 
-# 🛠️ Tech Stack
+## 🛠️ Tech Stack
+
+### Backend
 
 * Python
 * Flask
-* SQLite
+* MySQL
+* SQLAlchemy
+
+### Frontend
+
 * HTML5
 * CSS3
 * JavaScript
+
+### AI Integration
+
 * Google Gemini API
 
 ---
 
-# 📂 Project Structure
+## ⚠️ API Usage Notice
 
-```bash id="pw4qzs"
+This project uses the Google Gemini API under the free-tier plan. Due to API rate limits, users may occasionally encounter errors such as:
+
+* 429 (Quota Exceeded)
+* 503 (Service Unavailable)
+
+These issues are temporary and depend on API availability and usage limits.
+
+---
+
+## 📂 Project Structure
+
+```bash
 smartchat-ai/
 │
 ├── static/
@@ -50,11 +70,11 @@ smartchat-ai/
 
 ---
 
-# ⚙️ Database Setup
+## ⚙️ Database Setup
 
 Create a MySQL database:
 
-```sql id="zebx4i"
+```sql
 CREATE DATABASE chatbot_db;
 
 USE chatbot_db;
@@ -62,11 +82,11 @@ USE chatbot_db;
 
 ---
 
-# 🔑 Environment Variables
+## 🔑 Environment Variables
 
-Create a `.env` file in the project root directory and add the following:
+Create a `.env` file in the project root directory:
 
-```env id="t1x0kb"
+```env
 SECRET_KEY=your_secret_key
 
 DATABASE_URL=mysql+pymysql://root:yourpassword@localhost/chatbot_db
@@ -76,58 +96,67 @@ GEMINI_API_KEY=your_gemini_api_key
 
 ---
 
-# ▶️ How to Run the Project
+## ▶️ Installation & Setup
 
-## 1️⃣ Install Dependencies
+### 1. Clone the Repository
 
-```bash id="ttg3xh"
+```bash
+git clone https://github.com/ashritha-16/smartchat-ai.git
+cd smartchat-ai
+```
+
+### 2. Install Dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
----
+### 3. Configure Environment Variables
 
-## 2️⃣ Run the Flask Application
+Create and update the `.env` file with your database credentials and Gemini API key.
 
-```bash id="6b58yq"
+### 4. Run the Application
+
+```bash
 python app.py
 ```
 
----
+### 5. Open in Browser
 
-## 3️⃣ Open in Browser
-
-```bash id="h6eq2g"
+```bash
 http://127.0.0.1:5000/
 ```
 
 ---
 
-# 🎯 Learning Outcomes
+## 🎯 Learning Outcomes
 
-This project helped improve my understanding of:
+This project helped enhance skills in:
 
 * Flask Web Development
 * REST API Integration
-* Authentication Systems
+* Authentication & Authorization
 * Database Management with MySQL
-* AI Chatbot Integration
+* AI Chatbot Development
 * Frontend & Backend Integration
-* Responsive UI Development
+* Responsive Web Design
 
 ---
 
-# 👩‍💻 Author
+## 👩‍💻 Author
 
 **Ashritha**
 
-🔗 GitHub:
+GitHub:
 https://github.com/ashritha-16
 
-🔗 Live Project:
+Live Project:
 https://smartchat-ai-r3qu.onrender.com/
 
 ---
 
-# ⭐ Support
+## ⭐ Support
 
-If you like this project, please give it a star ⭐
+If you found this project useful, please consider giving it a **Star ⭐** on GitHub.
+
+Your support is greatly appreciated!
