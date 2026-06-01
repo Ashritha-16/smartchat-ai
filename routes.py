@@ -14,6 +14,7 @@ from extensions import db
 # Gemini AI
 from google import genai
 import os
+import traceback
 
 
 # Create blueprint
@@ -160,7 +161,8 @@ def logout():
 @login_required
 def chat():
 
-    user_input = request.json.get("message")
+    data = request.get_json(silent=True) or {}
+    user_input = data.get("message", "").strip()
 
     if not user_input:
         return jsonify({"response": "Please type a message"})
@@ -197,7 +199,7 @@ User:
         client = get_gemini_client()
 
         response = client.models.generate_content(
-            model="gemini-flash-latest",
+            model="gemini-2.0-flash",
             contents=prompt
         )
 
@@ -216,9 +218,19 @@ User:
         return jsonify({"response": bot_reply})
 
     except Exception as error:
-        return jsonify({"response": str(error)})
+        print("Gemini Error:", repr(error))
+        traceback.print_exc()
+        
+        error_message = str(error)
 
+        if "503" in error_message or "UNAVAILABLE" in error_message:
+            return jsonify({
+                "response": "⚠️ Gemini AI is currently experiencing high demand. Please try again after a few moments."
+            })
 
+        return jsonify({
+            "response": "⚠️ Something went wrong while generating the response. Please try again."
+        })
 # =========================
 # CHAT HISTORY
 # =========================
