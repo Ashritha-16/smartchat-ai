@@ -216,7 +216,22 @@ User:
         return jsonify({"response": bot_reply})
 
     except Exception as error:
-        return jsonify({"response": str(error)})
+        print("Gemini Error:", error)
+        msg = str(error)
+
+        if "429" in msg or "quota" in msg.lower():
+            return jsonify({
+                "response": "⚠️ Daily limit reached. Please try again later."
+            })
+
+        if "503" in msg:
+            return jsonify({
+                "response": "⚠️ AI service is busy. Please try again shortly."
+            })
+
+        return jsonify({
+            "response": "⚠️ Something went wrong. Please try again."
+        })
 
 
 # =========================
